@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test zawodów</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e0e0e0;
+            padding: 20px;
+        }
+        #header-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #logo img {
+            height: 60px;
+        }
+        .text h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .text h2 {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+        #navigation {
+            margin-top: 15px;
+            text-align: center;
+        }
+        #navigation button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        .h1_test {
+            text-align: center;
+            margin-top: 30px;
+        }
+        #quiz {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        #quiz button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .next-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            font-size: 18px;
+        }
+        .result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2a2a2a;
+            margin-bottom: 10px;
+        }
+        #quiz ul {
+            list-style-type: disc;
+            text-align: left;
+            margin: 0 auto;
+            max-width: 500px;
+        }
+        #quiz li {
+            margin-bottom: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header-info">
+            <div id="logo">
+                <img src="logo.png" alt="logo">
+            </div>
+            <div class="text">
+                <h1>Start Your Future</h1>
+                <h2>Stwórz swoją przyszłość z nami</h2>
+            </div>
+        </div>
+        <div id="navigation">
+            <button onclick="location.href='index.html'">Strona Główna</button>
+            <button onclick="location.href='test_proba.html'">Test</button>
+            <button onclick="location.href='games.html'">Odpocznij</button>
+            <button onclick="location.href='team.html'">Nasz Team</button>
+        </div>
+    </header>
+
+    <h1 class="h1_test">Test predyspozycji zawodowych</h1>
+    <div id="quiz"></div> 
+    <button class="next-button" onclick="nextQuestion()">Dalej</button>
+
+    <footer>
+        <p>Zespół Szkół Mechanicznych Nr 3 w Krakowie im. gen. Władysława Sikorskiego</p>
+        &copy; 2025 StartYourFuture. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script>
+        const questions = [
+            { text: "Co lubisz robić w wolnym czasie?", options: { "Czytać książki": "human", "Rozwiązywać zagadki logiczne": "tech", "Rysować i malować": "art", "Eksperymentować w kuchni": "science" } },
+            { text: "Jaki przedmiot lubisz najbardziej?", options: { "Polski": "human", "Matematyka": "tech", "Plastyka": "art", "Biologia": "science" } },
+            { text: "Jaka praca by Ci się podobała?", options: { "Dziennikarz": "human", "Programista": "tech", "Projektant graficzny": "art", "Lekarz": "science" } },
+            { text: "Jakie masz podejście do pracy zespołowej?", options: { "Lubię współpracować i dzielić się pomysłami": "human", "Preferuję działać samodzielnie": "tech", "Uwielbiam tworzyć wspólne projekty artystyczne": "art", "Współpraca w badaniach jest kluczowa": "science" } },
+            { text: "Jak reagujesz na stresujące sytuacje?", options: { "Zachowuję spokój i szukam rozwiązań": "human", "Pracuję pod presją, szybko rozwiązuję problemy": "tech", "Lubię tworzyć w takich momentach, to motywuje mnie": "art", "Działam metodycznie i logicznie, staram się rozwiązać problem": "science" } },
+            { text: "Jaka książka najbardziej Cię interesuje?", options: { "Literatura piękna": "human", "Książki o technologii i innowacjach": "tech", "Książki o sztuce i designie": "art", "Książki naukowe i popularnonaukowe": "science" } },
+            { text: "Jaki typ filmu lubisz najbardziej?", options: { "Dramat lub film dokumentalny": "human", "Film science fiction lub thriller": "tech", "Film artystyczny lub animowany": "art", "Film o nauce lub medycynie": "science" } },
+            { text: "Jakie aktywności fizyczne preferujesz?", options: { "Joga, spacery, medytacja": "human", "Bieganie, jazda na rowerze": "tech", "Sztuki walki, taniec": "art", "Sporty drużynowe, sporty ekstremalne": "science" } },
+            { text: "Co jest dla Ciebie najważniejsze w pracy?", options: { "Kontakt z ludźmi i komunikacja": "human", "Rozwiązywanie problemów technologicznych": "tech", "Kreatywność i estetyka": "art", "Osiąganie wyników w nauce": "science" } },
+            { text: "Gdzie widzisz siebie za 10 lat?", options: { "W roli lidera w branży medialnej lub edukacyjnej": "human", "W rozwijającej się technologii lub jako programista": "tech", "Jako artysta, projektant lub twórca": "art", "W instytucjach badawczych lub medycznych": "science" } },
+            { text: "Jakie masz podejście do rozwiązywania problemów?", options: { "Analizuję problemy z różnych perspektyw": "human", "Szukam efektywnych, logicznych rozwiązań": "tech", "Staram się być kreatywny i znaleźć oryginalne rozwiązanie": "art", "Używam metodycznych i naukowych narzędzi": "science" } },
+            { text: "Co preferujesz w pracy?", options: { "Rozmowy z klientami, praca zespołowa": "human", "Rozwiązywanie technicznych wyzwań": "tech", "Kreatywne projekty artystyczne": "art", "Badania, eksperymenty, medycyna": "science" } },
+            { text: "Jaki jest Twój stosunek do nauki?", options: { "Jestem zainteresowany/a historią i kulturą": "human", "Interesują mnie nowinki technologiczne": "tech", "Lubię sztukę i jej wpływ na społeczeństwo": "art", "Zawsze fascynowały mnie odkrycia naukowe i medyczne": "science" } },
+            { text: "Co robisz, gdy musisz podjąć ważną decyzję?", options: { "Rozmawiam z innymi i zbieram opinie": "human", "Kieruję się logiką i faktami": "tech", "Przeanalizuję kreatywne podejścia i pomysły": "art", "Dokonam analizy i wybiorę najskuteczniejsze rozwiązanie": "science" } }
+        ];
+
+        let currentQuestion = 0;
+        let scores = { human: 0, tech: 0, art: 0, science: 0 };
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                return showResult();
+            }
+            let q = questions[currentQuestion];
+            let quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `<div class="question">${q.text}</div>`;
+            for (let option in q.options) {
+                quizDiv.innerHTML += `<button onclick="answer('${q.options[option]}')">${option}</button>`;
+            }
+        }
+
+        function answer(category) {
+            scores[category]++;
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showResult() {
+            let maxCategory = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            let resultText = {
+                human: `
+                    <h2 class="result">Masz predyspozycje do kierunków humanistycznych!</h2>
+                    <p><strong>Proponowane kierunki w technikum lub liceum:</strong></p>
+                    <ul>
+                        <li>Technik organizacji reklamy</li>
+                        <li>Technik turystyki</li>
+                        <li>Liceum ogólnokształcące z rozszerzonym językiem polskim, historią, WOS-em</li>
+                        <li>Technik usług społecznych</li>
+                        <li>Technik bibliotekarz</li>
+                    </ul>
+                `,
+                tech: `
+                    <h2 class="result">Jesteś urodzonym inżynierem lub programistą!</h2>
+                    <p><strong>Proponowane kierunki w technikum:</strong></p>
+                    <ul>
+                        <li>Technik informatyk</li>
+                        <li>Technik programista</li>
+                        <li>Technik elektronik</li>
+                        <li>Technik mechatronik</li>
+                        <li>Technik robotyk</li>
+                        <li>Technik teleinformatyk</li>
+                    </ul>
+                `,
+                art: `
+                    <h2 class="result">Masz talent artystyczny!</h2>
+                    <p><strong>Proponowane kierunki w szkole średniej:</strong></p>
+                    <ul>
+                        <li>Technik fotografii i multimediów</li>
+                        <li>Technik grafiki i poligrafii cyfrowej</li>
+                        <li>Liceum plastyczne</li>
+                        <li>Technik stylista</li>
+                        <li>Technik przemysłu mody</li>
+                    </ul>
+                `,
+                science: `
+                    <h2 class="result">Przyszłość to nauki ścisłe i medycyna!</h2>
+                    <p><strong>Proponowane kierunki w technikum lub liceum:</strong></p>
+                    <ul>
+                        <li>Technik analityk</li>
+                        <li>Technik weterynarii</li>
+                        <li>Technik usług kosmetycznych</li>
+                        <li>Liceum z rozszerzoną biologią, chemią, matematyką</li>
+                        <li>Technik ochrony środowiska</li>
+                    </ul>
+                `
+            };
+            document.getElementById("quiz").innerHTML = resultText[maxCategory];
+            document.querySelector(".next-button").style.display = "none";
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test predyspozycji</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .question { margin: 20px 0; }
+        button { margin: 10px; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Test predyspozycji zawodowych</h1>
+    <div id="quiz"></div>
+    <button onclick="nextQuestion()">Dalej</button>
+    <h2 id="result"></h2>
+    
+    <script>
+        const questions = [
+            { text: "Co lubisz robić w wolnym czasie?", options: { "Czytać książki": "human", "Rozwiązywać zagadki logiczne": "tech", "Rysować i malować": "art", "Eksperymentować w kuchni": "science" } },
+            { text: "Jaki przedmiot lubisz najbardziej?", options: { "Polski": "human", "Matematyka": "tech", "Plastyka": "art", "Biologia": "science" } },
+            { text: "Jaka praca by Ci się podobała?", options: { "Dziennikarz": "human", "Programista": "tech", "Projektant graficzny": "art", "Lekarz": "science" } }
+        ];
+        
+        let currentQuestion = 0;
+        let scores = { human: 0, tech: 0, art: 0, science: 0 };
+        
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                return showResult();
+            }
+            let q = questions[currentQuestion];
+            let quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `<h3>${q.text}</h3>`;
+            for (let option in q.options) {
+                quizDiv.innerHTML += `<button onclick="answer('${q.options[option]}')">${option}</button>`;
+            }
+        }
+        
+        function answer(category) {
+            scores[category]++;
+            nextQuestion();
+        }
+        
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+        
+        function showResult() {
+            let maxCategory = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            let resultText = {
+                human: "Masz predyspozycje do kierunków humanistycznych!", 
+                tech: "Jesteś urodzonym inżynierem lub programistą!", 
+                art: "Masz talent artystyczny!", 
+                science: "Przyszłość to nauki ścisłe i medycyna!"
+            };
+            document.getElementById("quiz").innerHTML = "";
+            document.getElementById("result").innerText = resultText[maxCategory];
+        }
+        
+        loadQuestion();
+    </script>
+</body>
+</html>

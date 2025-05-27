@@ -1,0 +1,200 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(173, 236, 236);
+    color: #2c3e50;
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+#header-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    text-align: left;
+}
+
+#logo img {
+    margin-top: 10px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.text h1 {
+    margin: 10px 0 5px;
+    font-size: 2.5em;
+    color: #2c3e50;
+}
+.h1_test{
+    margin-left: 28px;
+}
+
+.text h2 {
+    margin: 0;
+    font-weight: normal;
+    color: #34495e;
+}
+
+#navigation {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#navigation button {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #1272b3;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 28px;
+    font-weight: bolder;
+
+}
+
+.texty{
+    width: 600px;
+    display: block;
+}
+.team{
+    width: 300px;
+    display: block;
+    float: right;
+    margin-right: 10%;
+    border-radius: 5px;
+}
+a{
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+main {
+    margin-left: 20px;
+    padding: 40px;
+    text-align: center;
+    text-align: left;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    position:absolute;
+		width:100%;
+		height:60px;	
+}
+
+
+
+
+
+
+/* Ogólny styl strony testu */
+
+
+h1 {
+    font-size: 2.5rem;
+    color:#f3792c;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #f3792c;
+    margin-top: 10px;
+}
+
+/* Styl quizu */
+#quiz {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+}
+
+/* Pytanie */
+.question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Przycisk */
+button {
+    background-color: #e0b30d;
+    color: white;
+    padding: 15px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Styl dla przycisku "Dalej" */
+.next-button {
+    background-color:  #1272b3;
+}
+
+.next-button:hover {
+    background-color: #004d40;
+}
+
+/* efekty ładowania wyniku */
+.result {
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #00796b;
+}
+
+/* Animacja dla pojawiającego się pytania */
+.question, .result {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsywność */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .question {
+        font-size: 1.2rem;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
